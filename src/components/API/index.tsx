@@ -12,3 +12,15 @@ export const getMoviesList = async () => {
     return []; 
   }
 };
+
+export const searchMovies = async (query: string) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/search/movie?api_key=${apiKey}&query=${query}`
+    );
+    return response.data.results;
+  } catch (error) {
+    console.error("Error searching movies:", error);
+    return [];
+  }
+};
