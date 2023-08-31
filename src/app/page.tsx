@@ -1,12 +1,14 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { getMoviesList, searchMovies } from "@/components/API/index";
-import CardMovie from "@/components/cardmovies";
+import CardMovie from "@/components/Cardmovies";
 import SearchBar from "@/components/Search";
+import Carousel from "@/components/Carousel";
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     getMoviesList().then((result) => {
@@ -24,10 +26,23 @@ const Home = () => {
     }
   };
 
+  const handleCarouselSelect = (movie: Movie) => {
+    setSelectedMovie(movie);
+  };
+
   return (
     <div className="text-center">
       <h1 className="text-2xl font-semibold my-4">Yoobi Movies</h1>
-      <SearchBar onSearch={handleSearch} />
+      <div className="flex justify-end">
+        <SearchBar onSearch={handleSearch} />
+      </div>
+      <Carousel onSelect={handleCarouselSelect} />
+      {selectedMovie && (
+        <div className="my-4">
+          <h2 className="text-xl font-semibold mb-2">Selected Movie</h2>
+          <CardMovie movie={selectedMovie} />
+        </div>
+      )}
       <div className="flex flex-wrap">
         {filteredMovies.map((movie, i) => (
           <CardMovie key={i} movie={movie} />
