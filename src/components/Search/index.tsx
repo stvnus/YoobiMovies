@@ -12,7 +12,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex items-center justify-end my-4 space-x-2">
+    <div className="flex items-center justify-end  space-x-2">
       <input
         type="text"
         placeholder="Search movies..."

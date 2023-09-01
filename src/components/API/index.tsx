@@ -25,14 +25,15 @@ export const searchMovies = async (query: string) => {
   }
 };
 
-export const getTrendingMoviesWeek = async () => {
+export const getUpcomingMovies = async () => {
   try {
     const response = await axios.get(
-      `${baseUrl}/trending/movie/week?api_key=${apiKey}`
+      `${baseUrl}/movie/upcoming?api_key=${apiKey}`
     );
-    return response.data.results.slice(0, 5); // Ambil 5 film pertama
+    return response.data.results;
   } catch (error) {
-    console.error("Error fetching trending movies:", error);
+    console.error("Error fetching upcoming movies:", error);
     return [];
   }
 };
+

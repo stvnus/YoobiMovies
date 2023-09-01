@@ -1,4 +1,3 @@
-
 import React from "react";
 
 interface Movie {
@@ -23,9 +22,11 @@ const CardMovie: React.FC<CardMovieProps> = ({ movie }) => {
         />
         <div className="absolute bottom-0 left-0 right-0 px-2 py-1 bg-black bg-opacity-75 text-white rounded-b-lg">
           <div className="font-semibold">{movie.title}</div>
-          <div>{movie.release_date}</div>
-          <div>Rating: {movie.vote_average}</div>
         </div>
+      </div>
+      <div className="bg-black bg-opacity-75 text-white rounded-b-lg p-2">
+        <div className="text-sm">{movie.release_date}</div>
+        <div className="text-sm">Rating: {movie.vote_average}</div>
       </div>
     </div>
   );
