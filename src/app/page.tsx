@@ -4,26 +4,27 @@ import CardMovie from "@/components/Cardmovies";
 import SearchBar from "@/components/Search";
 import UpcomingMoviesCarousel from "@/components/UpcomingCarousel"
 import { getMoviesList, searchMovies} from "@/components/API"; 
-
+import SearchResult from "@/components/SearchResult"
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
   const [scrolled, setScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     getMoviesList().then((result) => {
       setPopularMovies(result);
-      setFilteredMovies(result);
     });
   }, []);
 
   const handleSearch = async (query: string) => {
     if (query === "") {
-      setFilteredMovies(popularMovies);
+      setFilteredMovies([]);
     } else {
       const searchedMovies = await searchMovies(query);
       setFilteredMovies(searchedMovies);
+      setSearchQuery(query);
     }
   };
 
@@ -44,21 +45,29 @@ const Home = () => {
 
   return (
     <div className="text-center">
-<nav
+      <nav
         className={`fixed top-0 w-full p-4 z-10 ${
           scrolled ? "bg-gradient-to-b from-gray-400 " : ""
         } flex justify-between transition-all duration-300`}
       >
-        <h1 className="text-white text-2xl font-semibold">YooMovies</h1>
+        <h1 className="text-white text-2xl font-semibold ">YooMovies</h1>
         <SearchBar onSearch={handleSearch} />
       </nav>
       <div className={`pt-${scrolled ? "16" : "0"}`}>
-        <UpcomingMoviesCarousel />
-        <div className="flex flex-wrap">
-          {filteredMovies.map((movie, i) => (
-            <CardMovie key={i} movie={movie} />
-          ))}
-        </div>
+      
+        {searchQuery && (
+          <SearchResult query={searchQuery} movies={filteredMovies} />
+        )}
+        {!searchQuery && (
+          <>
+            <UpcomingMoviesCarousel />
+            <div className="flex flex-wrap">
+              {popularMovies.map((movie, i) => (
+                <CardMovie key={i} movie={movie} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

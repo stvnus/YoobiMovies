@@ -20,12 +20,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         onChange={(e) => setQuery(e.target.value)}
         className="border p-2 rounded w-60"
       />
-      <button
-        onClick={handleSearch}
+      <a
+        href="/result"
+        onClick={(e) => {
+          e.preventDefault(); 
+          handleSearch(); 
+        }}
         className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
       >
         Search
-      </button>
+      </a>
     </div>
   );
 };
