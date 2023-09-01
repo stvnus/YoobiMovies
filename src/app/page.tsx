@@ -21,10 +21,11 @@ const Home = () => {
   const handleSearch = async (query: string) => {
     if (query === "") {
       setFilteredMovies([]);
+      setSearchQuery(""); // Reset query pencarian
     } else {
       const searchedMovies = await searchMovies(query);
       setFilteredMovies(searchedMovies);
-      setSearchQuery(query);
+      setSearchQuery(query); // Simpan query pencarian
     }
   };
 
@@ -50,11 +51,18 @@ const Home = () => {
           scrolled ? "bg-gradient-to-b from-gray-400 " : ""
         } flex justify-between transition-all duration-300`}
       >
-        <h1 className="text-white text-2xl font-semibold ">YooMovies</h1>
+        <h1
+          className="text-white text-2xl font-semibold cursor-pointer"
+          onClick={() => {
+            setFilteredMovies([]); // Reset hasil pencarian
+            setSearchQuery(""); // Reset query pencarian
+          }}
+        >
+          YooMovies
+        </h1>
         <SearchBar onSearch={handleSearch} />
       </nav>
       <div className={`pt-${scrolled ? "16" : "0"}`}>
-      
         {searchQuery && (
           <SearchResult query={searchQuery} movies={filteredMovies} />
         )}
@@ -74,7 +82,6 @@ const Home = () => {
 };
 
 export default Home;
-
 interface Movie {
   title: string;
   poster_path: string;

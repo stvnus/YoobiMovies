@@ -11,13 +11,21 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     onSearch(query);
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch();
+    }
+  };
+
   return (
-    <div className="flex items-center justify-end  space-x-2">
+    <div className="flex items-center justify-end space-x-2">
       <input
         type="text"
         placeholder="Search movies..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={handleKeyPress} // Tambahkan event handler untuk Enter
         className="border p-2 rounded w-60"
       />
       <a
@@ -34,4 +42,4 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   );
 };
 
-export default SearchBar;
+export default SearchBar
