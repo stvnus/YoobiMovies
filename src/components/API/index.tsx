@@ -37,3 +37,14 @@ export const getUpcomingMovies = async () => {
   }
 };
 
+export const getMovieDetails = async (movieId: string) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/movie/${movieId}?api_key=${apiKey}`
+    );
+    return response.data; // Mengembalikan seluruh detail film
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    return null; // Mengembalikan null jika terjadi kesalahan
+  }
+};

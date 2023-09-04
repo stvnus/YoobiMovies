@@ -24,7 +24,7 @@ const UpcomingMoviesCarousel: React.FC = () => {
         <img
           src={`http://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
           alt={movie.title}
-          className="h-[60rem] rounded-lg"
+          className="h-[60rem] rounded-lg "
         />
       </div>
     ))}

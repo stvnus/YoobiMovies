@@ -1,3 +1,5 @@
+// src/components/Cardmovie/index.tsx
+
 import React from "react";
 
 interface Movie {
@@ -9,11 +11,15 @@ interface Movie {
 
 interface CardMovieProps {
   movie: Movie;
+  onClick?: () => void;
 }
 
-const CardMovie: React.FC<CardMovieProps> = ({ movie }) => {
+const CardMovie: React.FC<CardMovieProps> = ({ movie, onClick }) => {
   return (
-    <div className="group w-1/5 p-4 transition-transform transform hover:scale-105">
+    <div
+      className="group w-1/4 p-4 transition-transform transform hover:scale-105 cursor-pointer"
+      onClick={onClick}
+    >
       <div className="relative">
         <img
           src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}/${movie.poster_path}`}
@@ -25,8 +31,12 @@ const CardMovie: React.FC<CardMovieProps> = ({ movie }) => {
         </div>
       </div>
       <div className="bg-black bg-opacity-75 text-white rounded-b-lg p-2">
-        <div className="text-sm">{movie.release_date}</div>
-        <div className="text-sm">Rating: {movie.vote_average}</div>
+        <div className="text-sm">
+          <strong>Release Date:</strong> {movie.release_date}
+        </div>
+        <div className="text-sm">
+          <strong>Rating:</strong> {movie.vote_average}
+        </div>
       </div>
     </div>
   );
