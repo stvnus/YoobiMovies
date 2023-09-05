@@ -1,19 +1,43 @@
-// src/components/DetailMovie.tsx
-
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getMovieDetails } from "@/components/API"; 
 
 interface DetailMovieProps {
-  movie: Movie; 
-  onClose: () => void; 
+  movie: Movie;
+  onClose: () => void;
   isOpen: boolean;
 }
 
-const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose }) => {
+const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => {
+  const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
+
+  useEffect(() => {
+
+    const fetchMovieDetails = async () => {
+      try {
+        const data = await getMovieDetails(movie.id.toString());
+
+        if (data) {
+          setMovieDetails(data);
+        } else {
+          // Handle error jika data kosong atau request gagal
+          console.error("Failed to fetch movie details");
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching movie details:", error);
+      }
+    };
+
+    if (isOpen) {
+      // Panggil fungsi fetchMovieDetails saat modal dibuka
+      fetchMovieDetails();
+    }
+  }, [isOpen, movie.id]);
+
   return (
     <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-75">
       <div className="bg-white w-3/4 p-4 rounded-lg h-[40rem] relative">
    
-        <button
+      <button
           className="absolute top-4 right-4 bg-transparent border-none text-gray-500 hover:text-gray-700"
           onClick={onClose}
         >
@@ -32,16 +56,23 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose }) => {
             />
           </svg>
         </button>
-
-        {/* Tampilkan informasi detail movie di sini */}
-        <h2 className="text-2xl font-semibold">{movie.title}</h2>
-        <img
-          src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}/${movie.poster_path}`}
-          alt={movie.title}
-          className="rounded-lg max-h-96"
-        />
-
-
+        {movieDetails && (
+          <>
+            <h2 className="text-2xl font-semibold">{movieDetails.title}</h2>
+            <img
+              src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}/${movieDetails.poster_path}`}
+              alt={movieDetails.title}
+              className="rounded-lg max-h-96"
+            />
+            <p className="text-base mt-4">{movieDetails.overview}</p>
+            <p className="text-base mt-2">
+              <strong>Release Date:</strong> {movieDetails.release_date}
+            </p>
+            <p className="text-base mt-2">
+              <strong>Rating:</strong> {movieDetails.vote_average}
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

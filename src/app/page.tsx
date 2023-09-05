@@ -24,7 +24,7 @@ const Home = () => {
   const handleSearch = async (query: string) => {
     if (query === "") {
       setFilteredMovies([]);
-      setSearchQuery(""); 
+      setSearchQuery(""); // Reset query pencarian
     } else {
       const searchedMovies = await searchMovies(query);
       setFilteredMovies(searchedMovies);
