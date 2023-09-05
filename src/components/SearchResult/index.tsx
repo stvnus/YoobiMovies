@@ -18,7 +18,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ query, movies }) => {
 
   const closeDetailModal = () => {
     setSelectedMovie(null);
-    setShowDetailModal(false); 
+    setShowDetailModal(false); // Sembunyikan modal MovieDetail
+  };
 
   return (
     <div className="text-center">
@@ -32,7 +33,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ query, movies }) => {
           <CardMovie
             key={i}
             movie={movie}
-            onClick={() => openDetailModal(movie)} 
+            onClick={() => openDetailModal(movie)} // Panggil fungsi saat kartu diklik
           />
         ))}
       </div>
@@ -41,7 +42,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ query, movies }) => {
         <DetailMovie
           movie={selectedMovie}
           onClose={closeDetailModal}
-          isOpen={showDetailModal} 
+          isOpen={showDetailModal} // Menggunakan showDetailModal sebagai kondisi
         />
       )}
     </div>
