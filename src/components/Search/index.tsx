@@ -25,21 +25,34 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         placeholder="Search movies..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onKeyPress={handleKeyPress} // Tambahkan event handler untuk Enter
-        className="border p-2 rounded w-60"
-      />
-      <a
-        href="/result"
-        onClick={(e) => {
-          e.preventDefault(); 
-          handleSearch(); 
+        onKeyPress={handleKeyPress}
+        className="border-b border-blue-500 outline-none text-white" // Mengatur warna teks menjadi putih
+        style={{
+          borderBottomWidth: "2px",
+          backgroundColor: "transparent" // Mengatur latar belakang menjadi transparan
         }}
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+      />
+      <button
+        onClick={handleSearch}
+        className="bg-transparent border-none text-blue-500 hover:text-blue-600 p-2 rounded cursor-pointer"
       >
-        Search
-      </a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-5.2-5.2M15 10a5 5 0 11-10 0 5 5 0 0110 0z"
+          />
+        </svg>
+      </button>
     </div>
   );
 };
 
-export default SearchBar
+export default SearchBar;
