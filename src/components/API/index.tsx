@@ -48,3 +48,15 @@ export const getMovieDetails = async (movieId: string) => {
     return null; // Mengembalikan null jika terjadi kesalahan
   }
 };
+
+export const getMovieGenres = async () => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/genre/movie/list?api_key=${apiKey}`
+    );
+    return response.data.genres;
+  } catch (error) {
+    console.error("Error fetching movie genres:", error);
+    return [];
+  }
+};
