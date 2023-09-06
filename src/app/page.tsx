@@ -1,12 +1,11 @@
 "use client"
-
 import React, { useEffect, useState } from "react";
-import CardMovie from "@/components/Cardmovies";
-import UpcomingMoviesCarousel from "@/components/UpcomingCarousel";
-import { getMoviesList, searchMovies } from "@/components/API";
-import SearchResult from "@/components/SearchResult";
-import MovieDetailModal from "@/components/MovieDetail";
-import Navbar from "@/components/Navbar";
+import CardMovie from "@/components/Molecules/Cardmovies";
+import UpcomingMoviesCarousel from "@/components/Organism/UpcomingCarousel";
+import { getMoviesList, searchMovies } from "@/components/Service/API";
+import SearchResult from "@/components/Organism/SearchResult";
+import MovieDetailModal from "@/components/Organism/MovieDetail";
+import Navbar from "@/components/Molecules/Navbar";
 
 interface Movie {
   title: string;
@@ -76,11 +75,16 @@ const Home = () => {
         }}
         onSearch={handleSearch}
       />
+   
       <div className={`pt-${scrolled ? "16" : "0"}`}>
+        
         {searchQuery && <SearchResult query={searchQuery} movies={filteredMovies} />}
         {!searchQuery && (
           <>
+          
             <UpcomingMoviesCarousel />
+            <h1 className="text-white text-xl lg:text-4xl font-bold">Popular Now</h1>
+
             <div className="flex flex-wrap">
               {popularMovies.map((movie, i) => (
                 <CardMovie
