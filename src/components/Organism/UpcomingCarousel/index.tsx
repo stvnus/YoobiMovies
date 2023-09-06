@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import { getUpcomingMovies, getMovieGenres } from "@/components/Service/API";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

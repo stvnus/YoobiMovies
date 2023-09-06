@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import CardMovie from "@/components/Molecules/Cardmovies";
 import DetailMovie from "@/components/Organism/MovieDetail";
@@ -6,25 +7,29 @@ interface SearchResultProps {
   query: string;
   movies: Movie[];
 }
+
 interface Movie {
   title: string;
   poster_path: string;
   release_date: string;
   vote_average: number;
   id: number;
+  genres: { name: string }[];
+  overview: string;
 }
+
 const SearchResult: React.FC<SearchResultProps> = ({ query, movies }) => {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
 
   const openDetailModal = (movie: Movie) => {
     setSelectedMovie(movie);
-    setShowDetailModal(true); 
+    setShowDetailModal(true);
   };
 
   const closeDetailModal = () => {
     setSelectedMovie(null);
-    setShowDetailModal(false); 
+    setShowDetailModal(false);
   };
 
   return (
@@ -36,11 +41,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ query, movies }) => {
       </div>
       <div className="flex flex-wrap">
         {movies.map((movie, i) => (
-          <CardMovie
-            key={i}
-            movie={movie}
-            onClick={() => openDetailModal(movie)} 
-          />
+          <CardMovie key={i} movie={movie} onClick={() => openDetailModal(movie)} />
         ))}
       </div>
 
@@ -48,7 +49,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ query, movies }) => {
         <DetailMovie
           movie={selectedMovie}
           onClose={closeDetailModal}
-          isOpen={showDetailModal} 
+          isOpen={showDetailModal}
         />
       )}
     </div>

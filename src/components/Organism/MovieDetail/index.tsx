@@ -1,7 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
+// components/Organism/MovieDetail.tsx
+
 import React, { useEffect, useState } from "react";
 import { getMovieDetails } from "@/components/Service/API";
 import axios from "axios";
-import ButtonClose from "@/components/Atoms/ButtonClose"; 
+import ButtonClose from "@/components/Atoms/ButtonClose";
 
 const apiKey = process.env.NEXT_PUBLIC_TMDB_APIKEY;
 const baseUrl = process.env.NEXT_PUBLIC_TMDB_BASEURL;
@@ -24,15 +27,11 @@ interface Movie {
   release_date: string;
   vote_average: number;
   id: number;
-  genres: { name: string }[];
-  overview: string;
+  genres: { name: string }[]; // Tambahkan genres
+  overview: string; // Tambahkan overview
 }
 
-const DetailMovie: React.FC<DetailMovieProps> = ({
-  movie,
-  onClose,
-  isOpen,
-}) => {
+const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => {
   const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
@@ -50,21 +49,19 @@ const DetailMovie: React.FC<DetailMovieProps> = ({
           fetchMovieTrailer();
           fetchMovieCast();
 
-          setCategory(data.genres.map((genre) => genre.name).join(", ")); // Ambil category dari data film
+          setCategory(data.genres.map((genre: { name: string }) => genre.name).join(", "));
         } else {
           console.error("Failed to fetch movie details");
         }
       } catch (error) {
-        console.error(
-          "An error occurred while fetching movie details:",
-          error
-        );
+        console.error("An error occurred while fetching movie details:", error);
       }
     };
 
     if (isOpen) {
       fetchMovieDetails();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, movie.id]);
 
   const fetchMovieTrailer = async () => {
@@ -195,7 +192,7 @@ const DetailMovie: React.FC<DetailMovieProps> = ({
             </div>
           </div>
         )}
-        {isTrailerPlaying && (
+        {isTrailerPlaying && trailerUrl !== null && (
           <div className="mt-1 aspect-w-16 aspect-h-12 lg:aspect-w-16 lg:aspect-h-12 ">
             <iframe
               width="100%"
