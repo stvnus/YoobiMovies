@@ -22,7 +22,7 @@ Yoobi Movies is a sleek and user-friendly movie database web application that al
 
 ## Ready to start exploring the world of movies? 
 
-Visit Yoobi Movies at https://yoobi-movies.vercel.app/
+Visit Yoobi Movies at https://yoobi-movie.vercel.app/
 
 ## Getting Started To set up YooMovies locally
 
