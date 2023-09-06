@@ -102,7 +102,7 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
         isOpen ? "" : "hidden"
       }`}
     >
-      <div className="bg-white w-full lg:w-3/5 p-4 rounded-lg relative flex flex-col">
+      <div className="bg-white w-full lg:w-2/3 p-2 rounded-lg relative flex flex-col">
         <ButtonClose
           onClick={() => {
             setIsTrailerPlaying(false);

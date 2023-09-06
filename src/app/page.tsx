@@ -6,6 +6,7 @@ import { getMoviesList, searchMovies } from "@/components/Service/API";
 import SearchResult from "@/components/Organism/SearchResult";
 import MovieDetailModal from "@/components/Organism/MovieDetail";
 import Navbar from "@/components/Molecules/Navbar";
+import Footer from "@/components/Atoms/Footer";
 
 interface Movie {
   title: string;
@@ -106,6 +107,7 @@ const Home = () => {
           isOpen={showDetailModal}
         />
       )}
+      <Footer />
     </div>
   );
 };
