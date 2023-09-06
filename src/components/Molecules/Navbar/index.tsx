@@ -20,6 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onLogoClick, onSearch }) => {
         scrolled ? "bg-black bg-opacity-75 " : ""
       } flex justify-between transition-all duration-300`}
     >
+      <a href="/">
       <h1
         className={`text-white text-2xl font-semibold cursor-pointer ${
           showSearchInput ? "hidden sm:block" : ""
@@ -29,8 +30,18 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onLogoClick, onSearch }) => {
         }}
       >
         YooMovies
-      </h1>
-
+      </h1></a>
+      <a href="/topRated">
+      <h1
+        className={`text-white text-xl font-semibold cursor-pointer ${
+          showSearchInput ? "hidden sm:block" : ""
+        }`}
+        onClick={() => {
+          onLogoClick();
+        }}
+      >
+        Top Rated
+      </h1></a>
       <div className="flex items-center space-x-2">
         {showSearchInput ? (
           <SearchBar onSearch={onSearch} />

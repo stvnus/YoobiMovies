@@ -60,3 +60,20 @@ export const getMovieGenres = async () => {
     return [];
   }
 };
+
+export const getTopRatedMovies = async () => {
+  try {
+   
+    const thisYear = new Date().getFullYear();
+    const response = await axios.get(
+      `${baseUrl}/discover/movie?api_key=${apiKey}&primary_release_year=${thisYear}&sort_by=vote_average.desc&page=1`
+    );
+    
+    const topRatedMovies = response.data.results.slice(0, 15);
+    return topRatedMovies;
+  } catch (error) {
+    console.error("Error fetching top rated movies:", error);
+    return [];
+  }
+};
+
