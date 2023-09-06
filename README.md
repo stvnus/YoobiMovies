@@ -29,9 +29,10 @@ Visit Yoobi Movies at https://yoobi-movie.vercel.app/
 1. Clone the repository
 2. Navigate to the project directory
 3. Install dependencies: npm install
-4. Run the application 
+4. Add your API key from TMDB API to the .env file
+5. Run the application 
 ```bash
 npm run dev
 ```
-5. Open with your browser to see the result.
+6. Open localhost with your browser to see the result.
 
