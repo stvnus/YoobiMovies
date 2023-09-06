@@ -134,7 +134,7 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
     <span className="flex items-center ml-2">
     <svg
   xmlns="http://www.w3.org/2000/svg"
-  class="h-5 w-5 text-yellow-400"
+  className="h-5 w-5 text-yellow-400"
   fill="none"
   viewBox="0 0 24 24"
   stroke="currentColor"
@@ -159,7 +159,7 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
                 
               </div>
           
-              <p className="text-base mt-4 text-left overflow-hidden" style={{ maxHeight: '9.8rem', lineHeight: '1.4em' }}>
+              <p className="text-base mt-4 text-left overflow-hidden text-sm" style={{ maxHeight: '9.8rem', lineHeight: '1.4em' }}>
   {movieDetails?.overview}
 </p>
               {cast.length > 0 && (

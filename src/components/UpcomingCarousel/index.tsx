@@ -49,11 +49,11 @@ const UpcomingMoviesCarousel: React.FC = () => {
     className="h-[60rem] rounded-lg"
   />
   <h1
-    className="text-3xl font-bold mt-2 text-center text-white absolute left-20 bg-black bg-opacity-50"
+    className="text-3xl font-bold mt-2 text-center text-white absolute left-20 bg-black bg-opacity-50 rounded"
   >
     {movie.title}
   </h1>
-  <div className="bg-blue-500 text-white text-center mt-20 absolute left-20 px-2 rounded-full">
+  <div className="bg-blue-500 text-white text-center mt-20 absolute left-20 px-10 rounded-full">
     {getGenreNames(movie.genre_ids).map((genre, index) => (
       <span key={index} className="mr-2">
         {genre}

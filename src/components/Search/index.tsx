@@ -21,17 +21,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   return (
     <div className="flex items-center justify-end space-x-2">
       <input
-        type="text"
-        placeholder="Search movies..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyPress={handleKeyPress}
-        className="border-b border-blue-500 outline-none text-white" // Mengatur warna teks menjadi putih
-        style={{
-          borderBottomWidth: "2px",
-          backgroundColor: "transparent" // Mengatur latar belakang menjadi transparan
-        }}
-      />
+  type="text"
+  placeholder="Search Movies..."
+  value={query}
+  onChange={(e) => setQuery(e.target.value)}
+  onKeyPress={handleKeyPress}
+  className="border-b border-blue-500 outline-none text-white bg-transparent placeholder-white"
+/>
+
       <button
         onClick={handleSearch}
         className="bg-transparent border-none text-blue-500 hover:text-blue-600 p-2 rounded cursor-pointer"

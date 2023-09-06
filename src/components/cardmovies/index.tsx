@@ -30,14 +30,6 @@ const CardMovie: React.FC<CardMovieProps> = ({ movie, onClick }) => {
           <div className="font-semibold">{movie.title}</div>
         </div>
       </div>
-      <div className="bg-black bg-opacity-75 text-white rounded-b-lg p-2">
-        <div className="text-sm">
-          <strong>Release Date:</strong> {movie.release_date}
-        </div>
-        <div className="text-sm">
-          <strong>Rating:</strong> {movie.vote_average}
-        </div>
-      </div>
     </div>
   );
 };

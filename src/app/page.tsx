@@ -1,11 +1,20 @@
-"use client";
+"use client"
+
 import React, { useEffect, useState } from "react";
 import CardMovie from "@/components/Cardmovies";
-import SearchBar from "@/components/Search";
 import UpcomingMoviesCarousel from "@/components/UpcomingCarousel";
 import { getMoviesList, searchMovies } from "@/components/API";
 import SearchResult from "@/components/SearchResult";
 import MovieDetailModal from "@/components/MovieDetail";
+import Navbar from "@/components/Navbar";
+
+interface Movie {
+  title: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
+  id: number;
+}
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
@@ -24,11 +33,11 @@ const Home = () => {
   const handleSearch = async (query: string) => {
     if (query === "") {
       setFilteredMovies([]);
-      setSearchQuery(""); // Reset query pencarian
+      setSearchQuery("");
     } else {
       const searchedMovies = await searchMovies(query);
       setFilteredMovies(searchedMovies);
-      setSearchQuery(query); 
+      setSearchQuery(query);
     }
   };
 
@@ -59,22 +68,14 @@ const Home = () => {
 
   return (
     <div className="text-center">
-      <nav
-        className={`fixed top-0 w-full p-4 z-10 ${
-          scrolled ? "bg-gradient-to-b from-gray-400 " : ""
-        } flex justify-between transition-all duration-300`}
-      >
-        <h1
-          className="text-white text-2xl font-semibold cursor-pointer"
-          onClick={() => {
-            setFilteredMovies([]); 
-            setSearchQuery(""); 
-          }}
-        >
-          YooMovies
-        </h1>
-        <SearchBar onSearch={handleSearch} />
-      </nav>
+      <Navbar
+        scrolled={scrolled}
+        onLogoClick={() => {
+          setFilteredMovies([]);
+          setSearchQuery("");
+        }}
+        onSearch={handleSearch}
+      />
       <div className={`pt-${scrolled ? "16" : "0"}`}>
         {searchQuery && <SearchResult query={searchQuery} movies={filteredMovies} />}
         {!searchQuery && (
@@ -85,7 +86,7 @@ const Home = () => {
                 <CardMovie
                   key={i}
                   movie={movie}
-                  onClick={() => handleCardClick(movie)} 
+                  onClick={() => handleCardClick(movie)}
                 />
               ))}
             </div>
@@ -104,11 +105,3 @@ const Home = () => {
 };
 
 export default Home;
-
-interface Movie {
-  title: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
-  id: number;
-}
