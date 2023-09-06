@@ -17,11 +17,11 @@ Yoobi Movies is a sleek and user-friendly movie database web application that al
 4. Top Rated Page : show 15 top rated movies of the year based on the TMDB movie platform
 
 <img width="926" alt="page 2" src="https://github.com/stvnus/YoobiMovies/assets/58300623/4df71193-8fa3-457b-a847-6b1fcd9cecbf">
-
+<br><br><br><br>
 <img width="929" alt="page3" src="https://github.com/stvnus/YoobiMovies/assets/58300623/1c5959ab-ade0-4a65-8497-007e5bb6fe02">
-
+<br><br><br><br>
 <img width="925" alt="page4" src="https://github.com/stvnus/YoobiMovies/assets/58300623/39340da0-bb34-44ea-8fad-a9647937507f">
-
+<br><br><br><br>
 <img width="939" alt="page5" src="https://github.com/stvnus/YoobiMovies/assets/58300623/b7ca7d9d-5149-40f7-b8d0-3485f98abf1c">
 
 
