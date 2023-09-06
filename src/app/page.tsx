@@ -13,6 +13,8 @@ interface Movie {
   release_date: string;
   vote_average: number;
   id: number;
+  genres: { name: string }[];
+  overview: string;
 }
 
 const Home = () => {
