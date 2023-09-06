@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-// components/Organism/MovieDetail.tsx
 
 import React, { useEffect, useState } from "react";
 import { getMovieDetails } from "@/components/Service/API";
@@ -27,8 +26,8 @@ interface Movie {
   release_date: string;
   vote_average: number;
   id: number;
-  genres: { name: string }[]; // Tambahkan genres
-  overview: string; // Tambahkan overview
+  genres: { name: string }[];
+  overview: string;
 }
 
 const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => {
@@ -61,7 +60,7 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
     if (isOpen) {
       fetchMovieDetails();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, movie.id]);
 
   const fetchMovieTrailer = async () => {
@@ -102,14 +101,14 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
         isOpen ? "" : "hidden"
       }`}
     >
-      <div className="bg-white w-full lg:w-2/3 p-2 rounded-lg relative flex flex-col">
+      <div className="bg-white w-full lg:w-2/3 h-4/4 p-2 md:h-[85vh] rounded-lg relative flex flex-col">
         <ButtonClose
           onClick={() => {
             setIsTrailerPlaying(false);
             onClose();
           }}
         />
-        <h2 className="text-2xl font-semibold text-center mb-2">
+        <h2 className="text-md md:text-2xl font-semibold text-center mb-2">
           {movieDetails?.title} ({new Date().getFullYear()})
         </h2>
 
@@ -118,12 +117,12 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
             <img
               src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}/${movieDetails.poster_path}`}
               alt={movieDetails.title}
-              className="rounded-lg max-h-96 w-1/5"
+              className="rounded-lg h-[20vh] md:h-[40vh] w-1/5"
             />
-            <div className="ml-4 w-full lg:w-3/4">
+            <div className="ml-2 w-full lg:w-3/4">
               <div className="flex justify-between">
                 <div>
-                  <p className="text-base mt-2">
+                  <p className="mr-30 text-sm md:mt-2">
                     {category && (
                       <span>
                         <strong>Category:</strong> {category}
@@ -133,11 +132,11 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
                 </div>
                 <div>
                   <strong>
-                    <p className="text-base mt-2 flex items-center">
+                    <p className="text-sm  flex items-center">
                       <span className="flex items-center ml-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 text-yellow-400"
+                          className="h-4 w-4 text-yellow-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -150,7 +149,7 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
                           />
                         </svg>
                       </span>
-                      <span className="ml-1">
+                      <span className="ml-1 text-sm md:text-2xl">
                         {movieDetails?.vote_average.toFixed(1)}/10
                       </span>
                     </p>
@@ -165,7 +164,7 @@ const DetailMovie: React.FC<DetailMovieProps> = ({ movie, onClose, isOpen }) => 
                   {movieDetails?.overview}
                 </p>
                 {cast.length > 0 && (
-                  <div className="mt-4">
+                  <div className={`mt-4 ${window.innerWidth < 768 ? 'hidden' : ''}`}>
                     <h3 className="text-md font-semibold mb-1 text-left">
                       Cast:
                     </h3>

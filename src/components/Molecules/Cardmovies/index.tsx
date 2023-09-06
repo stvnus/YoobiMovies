@@ -15,7 +15,7 @@ interface CardMovieProps {
 const CardMovie: React.FC<CardMovieProps> = ({ movie, onClick }) => {
   return (
     <div
-      className="group w-1/4 p-4 transition-transform transform hover:scale-105 cursor-pointer"
+      className="group w-1/3 p-3 md:w-1/4 lg:w-1/5  transition-transform transform hover:scale-105 cursor-pointer"
       onClick={onClick}
     >
       <div className="relative">

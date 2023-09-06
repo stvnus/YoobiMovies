@@ -45,16 +45,17 @@ const UpcomingMoviesCarousel: React.FC = () => {
         {upcomingMovies.map((movie, i) => (
           <div key={i} className="flex flex-col items-center justify-center relative">
   <img
-    src={`http://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
+    src={`http://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
     alt={movie.title}
-    className="h-[60rem] rounded-lg"
+    className="h-auto md:h-screen rounded-lg"
   />
+ 
   <h1
-    className="text-3xl font-bold mt-2 text-center text-white absolute left-20 bg-black bg-opacity-50 rounded"
+    className="text-md md:text-3xl font-bold mt-5 md:mt-20 text-center text-white absolute left-8 md:left-20 bg-black bg-opacity-50 rounded"
   >
     {movie.title}
   </h1>
-  <div className="bg-blue-500 text-white text-center mt-20 absolute left-20 px-10 rounded-full">
+  <div className=" text-md bg-blue-500 text-white text-center mt-20 md:mt-40  absolute left-8 md:left-20 rounded-full">
     {getGenreNames(movie.genre_ids).map((genre, index) => (
       <span key={index} className="mr-2">
         {genre}
@@ -72,7 +73,7 @@ export default UpcomingMoviesCarousel;
 
 interface Movie {
   title: string;
-  poster_path: string;
+  backdrop_path: string;
   release_date: string;
   vote_average: number;
   genre_ids: number[];
